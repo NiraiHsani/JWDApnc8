@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Penjumlahan Biaya Barang</title>
+</head>
+<body>
+  <label for="barang">Pilih Barang:</label>
+  <select id="barang">
+    <option value="" data-harga="">Pilih barang</option>
+    <option value="barang1" data-harga="10">Barang 1</option>
+    <option value="barang2" data-harga="20">Barang 2</option>
+    <option value="barang3" data-harga="30">Barang 3</option>
+  </select>
+
+  <br>
+
+  <label for="jumlah-barang">Jumlah Barang:</label>
+  <input type="number" id="jumlah-barang">
+
+  <br>
+
+  <label for="harga-barang">Harga Barang:</label>
+  <input type="text" id="harga-barang" readonly>
+
+  <br>
+
+  <p id="total-biaya"></p>
+
+  <script>
+    // Mendapatkan elemen-elemen yang dibutuhkan dari DOM
+    const barangSelect = document.getElementById('barang');
+    const jumlahBarangInput = document.getElementById('jumlah-barang');
+    const hargaBarangInput = document.getElementById('harga-barang');
+    const totalBiayaOutput = document.getElementById('total-biaya');
+
+    // Menambahkan event listener pada elemen <select>
+    barangSelect.addEventListener('change', updateHargaBarang);
+
+    // Menambahkan event listener pada input jumlah barang
+    jumlahBarangInput.addEventListener('input', hitungTotalBiaya);
+
+    function updateHargaBarang() {
+      const selectedOption = barangSelect.options[barangSelect.selectedIndex];
+      const hargaBarang = selectedOption.getAttribute('data-harga');
+
+      if (hargaBarang !== null) {
+        hargaBarangInput.value = hargaBarang;
+      } else {
+        hargaBarangInput.value = '';
+      }
+
+      hitungTotalBiaya();
+    }
+
+    function hitungTotalBiaya() {
+      const jumlahBarang = parseInt(jumlahBarangInput.value);
+      const hargaBarang = parseInt(hargaBarangInput.value);
+
+      const totalBiaya = jumlahBarang * hargaBarang;
+      totalBiayaOutput.textContent = `Total Biaya: ${totalBiaya}`;
+    }
+  </script>
+</body>
+</html>

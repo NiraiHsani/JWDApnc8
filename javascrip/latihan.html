@@ -1,0 +1,75 @@
+<body>
+<table>
+    <tr>
+        <td>Nama Barang</td>
+        <td>
+            <select id="barang">
+                <option value="" data-harga="Nama Barang"></option>
+                <option value="PB">+++Pilihan Barang+++</option>
+                <option value="Kopi" data-harga="3000">Kopi</option>
+                <option value="Teh" data-harga="2500">Teh</option>
+                <option value="Gula" data-harga="3000">Gula</option>
+            </select>
+        </td>
+    </tr>
+
+    <tr>
+        <td>Harga Barang</td>
+        <td>
+            <input type="text" id="harga" readonly>
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Qty</td>
+        <td>
+            <input type="number" id="qty">
+            </select>
+        </td>
+    </tr>
+    <tr>
+        <td>Total</td>
+        <td>
+            <input type="text" id="total" onkeyup="hitungTotal() ">
+            </select>
+        </td>
+    </tr>
+
+
+    <script>
+        var barangSelect = document.getElementById('barang');
+        var hargaInput = document.getElementById('harga');
+        var qtyInput = document.getElementById('qty');
+        var totalOutput = document.getElementById('total');
+
+        //menambahkan event listener pake select
+        barangSelect.addEventListener('change', updateHargaBarang);
+
+        // Menambahkan event listener pada input jumlah barang
+        qtyInput.addEventListener('input', hitungTotal);
+
+        function updateHargaBarang(){
+            var selectedOption = barangSelect.options[barangSelect.selectedIndex];
+            var harga = selectedOption.getAttribute('data-harga');
+
+        if (harga !== null) {
+            hargaInput.value = harga; } 
+        else {
+            hargaInput.value = '';
+        }
+
+      hitungTotal();
+        }
+
+    function hitungTotal() {
+      var qty = parseInt(qtyInput.value);
+      var harga = parseInt(hargaInput.value);
+
+      var total = qty * harga;
+      totalOutput.textContent = `Total : ${total}`;
+
+    }
+    </script>
+</table>
+
+</body>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Belajar Javascript Part 4 : Operator Aritmatika Pada Javascript</title>
+	</head>
+	<body>
+		<h1>Belajar Javascript Part 4 <br/> Operator Aritmatika Pada Javascript</h1>
+		<h2>www.malasngoding.com</h2>
+        <input type="text" id="x" > +
+        <input type="text" id="y" onkeyup="hitung()" value="0">
+        <input type="submit" value="=" onclick="hitung()">
+		<div id="penjumlahan"></div>				
+ 
+		<script>
+			function hitung(){
+                var x = document.getElementById("x").value;
+			    var y = document.getElementById("y").value;
+
+			    var z = parseInt(x) + parseInt(y);			
+ 
+			document.getElementById("penjumlahan").innerHTML = z;
+            }			
+		</script>
+	</body>
+</html>
